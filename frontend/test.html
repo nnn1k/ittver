@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITTver</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./picture/111.jpg">
+                <a href="./front/MAIN.html"><span>IT</span>Tver </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="./picture/111.jpg">
+                <span>Иван Петров</span>
+                <a href="#" class="exit-btn with-icon">Выход</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Боковое меню -->
+            <aside class="sidebar">
+                <div class="quick-actions">
+                    <button class="btn primary"><i class="fas fa-plus"></i> Новая заявка</button>
+                    <button class="btn secondary"><i class="fas fa-download"></i> Отчет</button>
+                </div>
+
+                <div class="menu-section">
+                    <h3>Меню</h3>
+                    <ul>
+                        <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Дашборд</a></li>
+                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Мои заявки</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+
+
+            <!-- Контентная область -->
+            <section class="content">
+                <div class="breadcrumbs">
+                    <span>Главная</span> / <span>Дашборд</span>
+                </div>
+
+                <h1>Дашборд</h1>
+
+                <!-- Статистика -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-blue">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>NONE</h3>
+                            <p>Активные заявки</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon bg-green">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>NONE</h3>
+                            <p>Завершенные</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon bg-orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>NONE</h3>
+                            <p>В ожидании</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon bg-red">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>NONE</h3>
+                            <p>Отмененные</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- График и последние заявки -->
+                <div class="content-grid">
+                    <div class="chart-container">
+                        <h2>Статистика заявок</h2>
+                        <div class="chart-placeholder">
+                            <!-- Здесь будет график (Chart.js или аналогичный) -->
+                            <img src="./picture/111.jpg" alt="График">
+                        </div>
+                    </div>
+
+                    <div class="recent-tickets">
+                        <h2>Последние заявки</h2>
+                        <table class="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Тема</th>
+                                    <th>Статус</th>
+                                    <th>Дата</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1</td>
+                                    <td>zzzzz</td>
+                                    <td><span >zzzzz</span></td>
+                                    <td>zz.zz.zzzz</td>
+                                </tr>
+                                <tr>
+                                    <td>#2</td>
+                                    <td>zzzzz</td>
+                                    <td><span >zzzzz</span></td>
+                                    <td>zz.zz.zzzz</td>
+                                </tr>
+                                <tr>
+                                    <td>#3</td>
+                                    <td>zzzzz</td>
+                                    <td><span >zzzzz</span></td>
+                                    <td>zz.zz.zzzz</td>
+                                </tr>
+                                <tr>
+                                    <td>#4</td>
+                                    <td>zzzzz</td>
+                                    <td><span >zzzzz</span></td>
+                                    <td>zz.zz.zzzz</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Форма новой заявки (скрыта по умолчанию) -->
+                <div class="new-ticket-form" id="newTicketForm" style="display: none;">
+                    <h2>Новая заявка</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="ticketType">Тип заявки</label>
+                            <select id="ticketType" required>
+                                <option value="">Выберите тип</option>
+                                <option value="repair">Ремонт техники</option>
+                                <option value="server">Настройка сервера</option>
+                                <option value="1c">Интеграция с 1С</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ticketSubject">Тема</label>
+                            <input type="text" id="ticketSubject" placeholder="Краткое описание" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ticketDescription">Описание</label>
+                            <textarea id="ticketDescription" rows="5" placeholder="Подробное описание проблемы..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Прикрепить файлы</label>
+                            <div class="file-upload">
+                                <input type="file" id="fileUpload" multiple>
+                                <label for="fileUpload" class="upload-btn">
+                                    <i class="fas fa-cloud-upload-alt"></i> Выберите файлы
+                                </label>
+                                <span class="file-info">Макс. размер: 10MB</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary">Отмена</button>
+                            <button type="submit" class="btn primary">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ITTver</h4>
+                    <p> ITTver: ремонт техники, настройка серверов, интеграция с 1С</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-phone"></i> +7 (123) 456-78-90</p>
+                    <p><i class="fas fa-envelope"></i> support@itconfig.ru</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Поддержка</h4>
+                    <p>Пн-Пт: 9:00 - 18:00</p>
+                    <p>Сб-Вс: выходной</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ITTver. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+<!-- Модальное окно для "Мои заявки" -->
+<div id="ticketsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Мои заявки</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="filters">
+                <select id="modalTicketFilter">
+                    <option value="all">Все заявки</option>
+                    <option value="active">Активные</option>
+                    <option value="completed">Завершенные</option>
+                </select>
+                <input type="text" id="modalTicketSearch" placeholder="Поиск по заявкам...">
+            </div>
+            <div class="tickets-list">
+                <!-- Заполняется JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Модальное окно для новой заявки -->
+<div id="newTicketModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Создание новой заявки</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="ticketType">Тип заявки</label>
+                    <select id="ticketType" required>
+                        <option value="">Выберите тип</option>
+                        <option value="repair">Ремонт техники</option>
+                        <option value="server">Настройка сервера</option>
+                        <option value="1c">Интеграция с 1С</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticketSubject">Тема</label>
+                    <input type="text" id="ticketSubject" placeholder="Краткое описание" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticketDescription">Описание</label>
+                    <textarea id="ticketDescription" rows="5" placeholder="Подробное описание проблемы..." required></textarea>
+                </div>
+
+
+                <div class="form-actions">
+                    <button type="button" class="btn secondary close-modal-btn">Отмена</button>
+                    <button type="submit" class="btn primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для отчетов -->
+<div id="reportModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Генерация отчета</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="reportForm">
+                <div class="form-group">
+                    <label for="reportType">Тип отчета</label>
+                    <select id="reportType" required>
+                        <option value="">Выберите тип</option>
+                        <option value="monthly">Ежемесячный отчет</option>
+                        <option value="services">Отчет по услугам</option>
+                        <option value="clients">Отчет по клиентам</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportPeriod">Период</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate" required>
+                        <span>по</span>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Формат</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="format" value="pdf" checked> PDF
+                        </label>
+                        <label>
+                            <input type="radio" name="format" value="excel"> Excel
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn secondary close-modal-btn">Отмена</button>
+                    <button type="submit" class="btn primary">Сгенерировать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для моих заявок -->
+<div id="myTicketsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Мои заявки</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="filters">
+                <select id="ticketFilter">
+                    <option value="all">Все заявки</option>
+                    <option value="active">Активные</option>
+                    <option value="completed">Завершенные</option>
+                </select>
+                <input type="text" id="ticketSearch" placeholder="Поиск по заявкам...">
+            </div>
+            <div class="tickets-list">
+                <!-- Сюда будут загружаться заявки -->
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Модальное окно для "Заявки" (шапка) -->
+<div id="headerTicketsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Все заявки</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="filters">
+                <select id="headerTicketFilter">
+                    <option value="all">Все заявки</option>
+                    <option value="new">Новые</option>
+                    <option value="in_work">В работе</option>
+                    <option value="completed">Завершенные</option>
+                </select>
+                <input type="text" id="headerTicketSearch" placeholder="Поиск по заявкам...">
+            </div>
+            <div class="tickets-list">
+                <!-- Заполняется JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

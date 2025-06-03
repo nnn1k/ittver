@@ -1,0 +1,157 @@
+ /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Сетка услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+        }
+
+        /* Карточка услуги */
+        .service-card {
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s; /* Только эти свойства анимируются */
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 400px; /* Фиксированная минимальная высота */
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-icon {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3498db;
+            font-size: 2.5rem;
+        }
+
+        .service-card h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .service-card p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Кнопка "Подробнее" */
+        .service-btn {
+            display: block;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: auto; /* Прижимаем кнопку к низу */
+        }
+
+        .service-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Детали услуги */
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 15px;
+            flex-shrink: 0
+        }
+
+        .service-details.active {
+            max-height: 1000px;
+        }
+
+        .service-details-content {
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .service-details h4 {
+            color: #fff;
+            margin: 15px 0 10px;
+        }
+
+        .service-details ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .service-details li {
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
