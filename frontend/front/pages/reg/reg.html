@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITTver - Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .register-header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .register-header .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .register-header .logo span:first-child {
+            color: var(--secondary-color);
+        }
+
+        .register-header h1 {
+            font-size: 22px;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .register-form .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .register-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .register-form .input-with-icon {
+            position: relative;
+        }
+
+        .register-form .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #95a5a6;
+        }
+
+        .register-form input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .register-form input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .password-strength {
+            height: 4px;
+            background-color: #eee;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #e74c3c;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .password-hint {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .terms-agreement {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .terms-agreement input {
+            margin-right: 10px;
+            margin-top: 3px;
+            width: auto;
+        }
+
+        .terms-agreement a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .terms-agreement a:hover {
+            text-decoration: underline;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .register-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .register-btn:active {
+            transform: translateY(0);
+        }
+
+        .register-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .divider::before {
+            margin-right: 10px;
+        }
+
+        .divider::after {
+            margin-left: 10px;
+        }
+
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .login-link a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для валидации */
+        .valid {
+            border-color: var(--success-color) !important;
+        }
+
+        .invalid {
+            border-color: var(--accent-color) !important;
+        }
+
+        .error-message {
+            color: var(--accent-color);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .register-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+
+            .name-fields {
+                flex-direction: column;
+            }
+
+            .name-fields .form-group {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .name-fields {
+                display: flex;
+                gap: 15px;
+            }
+
+            .name-fields .form-group {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <div class="logo">
+                <img src="./picture/111.jpg" alt="ITTver Logo">
+                <span>IT</span><span>Tver</span>
+            </div>
+            <h1>Создать аккаунт</h1>
+            <p>Заполните форму для регистрации в системе</p>
+        </div>
+
+        <form class="register-form" id="registrationForm">
+            <div class="name-fields">
+                <div class="form-group">
+                    <label for="firstName">Имя</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="firstName" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="error-message" id="firstNameError">Пожалуйста, введите ваше имя</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Фамилия</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="lastName" placeholder="Ваша фамилия" required>
+                    </div>
+                    <div class="error-message" id="lastNameError">Пожалуйста, введите вашу фамилию</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="example@example.com" required>
+                </div>
+                <div class="error-message" id="emailError">Пожалуйста, введите корректный email</div>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Логин</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user-tag"></i>
+                    <input type="text" id="username" placeholder="Придумайте логин" required>
+                </div>
+                <div class="error-message" id="usernameError">Логин должен содержать от 4 до 20 символов</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Придумайте пароль" required>
+                </div>
+                <div class="password-strength">
+                    <div class="password-strength-bar" id="passwordStrength"></div>
+                </div>
+                <div class="password-hint" id="passwordHint">
+                    Пароль должен содержать минимум 8 символов, включая цифры и специальные знаки
+                </div>
+                <div class="error-message" id="passwordError">Пароль слишком слабый</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Подтверждение пароля</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
+                </div>
+                <div class="error-message" id="confirmPasswordError">Пароли не совпадают</div>
+            </div>
+
+            <div class="terms-agreement">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Я согласен с <a href="#">условиями использования</a> и <a href="#">политикой конфиденциальности</a></label>
+            </div>
+            <div class="error-message" id="termsError">Необходимо принять условия</div>
+
+            <button type="submit" class="register-btn" id="registerBtn" disabled>Зарегистрироваться</button>
+
+            <div class="divider">Уже есть аккаунт?</div>
+
+            <div class="login-link">
+                <a href="login.html">Войти в систему</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
