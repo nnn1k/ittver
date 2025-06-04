@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT-Аутсорсинг | Ремонт техники, настройка серверов, интеграция 1С</title>
-    <link rel="stylesheet" href="MAIN.css">
+    <link rel="stylesheet" href="/frontend/pages/main/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -24,7 +24,7 @@
                     <li><a href="#contact">Контакты</a></li>
                     <li><a href="../lk/lk.html">Личный кабинет</a></li>
                 </ul>
-                <a href="../application_phone/application_phone.html" class="btn callback-btn">Заказать звонок</a>
+                <a href={{ url_for("application_phone_page") }} class="btn">Заказать звонок</a>
             </nav>
             <div class="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -37,7 +37,7 @@
             <div class="hero-content">
                 <h1>Профессиональный IT-аутсорсинг для бизнеса</h1>
                 <p>Ремонт техники, настройка серверов, интеграция с 1С</p>
-                <a href="../application/application.html" class="btn">Оставить заявку</a>
+                <a href={{ url_for("application_page") }} class="btn">Оставить заявку</a>
             </div>
         </div>
     </section>
@@ -47,21 +47,21 @@
             <h2>Наши услуги</h2>
 
             <div class="services-grid">
-                <a href="../services/services.html">
+                <a href={{url_for('services_page')}}>
                 <div class="service-card" >
                     <i class="fas fa-laptop"></i>
                     <h3>Ремонт техники</h3>
                     <p>Диагностика и ремонт компьютеров, ноутбуков, оргтехники.</p>
                 </div>
                 </a>
-                <a href="../services/services.html">
+                <a href={{url_for('services_page')}}>
                 <div class="service-card">
                     <i class="fas fa-server"></i>
                     <h3>Настройка серверов</h3>
                     <p>Развертывание и администрирование серверов Windows/Linux.</p>
                 </div>
                 </a>
-                <a href="../services/services.html">
+                <a href={{url_for('services_page')}}>
                 <div class="service-card">
                     <i class="fas fa-calculator"></i>
                     <h3>Интеграция с 1С</h3>
@@ -85,7 +85,7 @@
                     </ul>
                 </div>
                 <div class="about-image">
-                    <img src="../../../picture/111.jpg" alt="Наша команда">
+                    <img src="/frontend/picture/test.jpg" alt="Наша команда">
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <div class="portfolio-grid">
                 <!-- Проект 1 -->
                 <div class="portfolio-item">
-                    <img src="../../../picture/111.jpg" alt="Настройка сервера" class="portfolio-image">
+                    <img src="/frontend/picture/test.jpg" alt="Настройка сервера" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Настройка сервера для ООО "ТехноМир"</h3>
                         <p class="portfolio-description">Полная настройка серверной инфраструктуры для сети магазинов с гарантией 24/7 поддержки.</p>
@@ -151,7 +151,7 @@
 
                 <!-- Проект 2 -->
                 <div class="portfolio-item">
-                    <img src="../../../picture/111.jpg" alt="Интеграция 1С" class="portfolio-image">
+                    <img src="/frontend/picture/test.jpg" alt="Интеграция 1С" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Интеграция 1С с интернет-магазином</h3>
                         <p class="portfolio-description">Настройка двустороннего обмена данными между 1С и сайтом для автоматизации процессов.</p>
@@ -186,7 +186,7 @@
 
                 <!-- Проект 3 -->
                 <div class="portfolio-item">
-                    <img src="../../../picture/111.jpg" alt="Ремонт техники" class="portfolio-image">
+                    <img src="/frontend/picture/test.jpg" alt="Ремонт техники" class="portfolio-image">
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Ремонт парка техники для Call-центра</h3>
                         <p class="portfolio-description">Комплексный ремонт 25 рабочих станций с заменой комплектующих и настройкой ПО.</p>
@@ -323,15 +323,12 @@
         </div>
     </section>
 
-
-
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 ITTver. Все права защищены.</p>
         </div>
     </footer>
 
-    <script src="MAIN.js"></script>
-
+    <script src="/frontend/pages/main/main.js"></script>
 </body>
 </html>
