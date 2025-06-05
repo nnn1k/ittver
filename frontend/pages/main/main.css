@@ -91,7 +91,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("/frontend/picture/test.jpg") no-repeat center center/cover;
+    background: url("/frontend/picture/124531.jpg") no-repeat center center/cover;
     z-index: -1;
 }
 .hero::after {
