@@ -1,3 +1,5 @@
+import {getUser, makeRequest} from "/frontend/utils.js";
+
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы меню
     const newTicketBtn = document.querySelector('.quick-actions .btn.primary');
@@ -120,3 +122,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация
     initModals();
 });
+
+const user = await getUser()
+
+async function logout(){
+    const response = await makeRequest({
+        url: "/api/auth/logout",
+        method: "POST"
+    })
+    location.href = '/'
+}
+
+window.logout = logout

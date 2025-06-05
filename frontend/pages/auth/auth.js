@@ -12,7 +12,7 @@ async function login_user() {
             password
         }
     })
-    if (!response){
+    if (!response.user){
         return
     }
     else {

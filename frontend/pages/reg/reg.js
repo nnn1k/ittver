@@ -20,7 +20,7 @@ async function register_user() {
             phone
         }
     })
-    if (!response){
+    if (!response.user){
         return
     }
     else {

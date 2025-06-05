@@ -12,7 +12,10 @@ export async function makeRequest(request) {
         })
     if (response.ok) {
         const data = await response.json()
+        console.log(data)
         return data
+    } else if (response.status === 401) {
+        location.href = '/auth'
     } else if (response.status >= 400 && response.status < 500) {
         const errorData = await response.json()
         console.log(errorData)
@@ -21,4 +24,12 @@ export async function makeRequest(request) {
         console.error('Ошибка 500: Внутренняя ошибка сервера.');
         alert('Произошла ошибка на сервере. Попробуйте позже.');
     }
+}
+
+export async function getUser(){
+    const response = await makeRequest({
+        method: "GET",
+        url: '/api/users/me'
+    })
+    return response.user
 }
