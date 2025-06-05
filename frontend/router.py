@@ -29,7 +29,7 @@ def register_page(request: Request):
     return templates.TemplateResponse("reg/reg.html", {"request": request})
 
 
-@router.post("/services")
+@router.get("/services")
 def services_page(request: Request):
     return templates.TemplateResponse("services/services.html", {"request": request})
 
