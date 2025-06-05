@@ -120,10 +120,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация
     initModals();
 });
-
-document.getElementById('escape').addEventListener('change', function() {
-    if(this.value === 'poka') {
-        // Здесь код для выхода из системы
-        window.location.href = '/logout'; // Пример перенаправления
-    }
-});

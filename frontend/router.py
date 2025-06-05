@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import FileResponse
 
 templates = Jinja2Templates(directory='frontend/pages/')
 
@@ -28,11 +29,6 @@ def register_page(request: Request):
     return templates.TemplateResponse("reg/reg.html", {"request": request})
 
 
-@router.get("/swap_psw")
-def swap_psw_page(request: Request):
-    return templates.TemplateResponse("swap/swap_psw.html", {"request": request})
-
-
 @router.post("/services")
 def services_page(request: Request):
     return templates.TemplateResponse("services/services.html", {"request": request})
@@ -46,3 +42,6 @@ def application_page(request: Request):
 @router.get("/application_phone")
 def application_phone_page(request: Request):
     return templates.TemplateResponse("application_phone/application_phone.html", {"request": request})
+
+
+
