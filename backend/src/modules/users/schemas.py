@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
 
@@ -14,3 +15,15 @@ class UserSchema(BaseModel):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class UserRelSchema(UserSchema):
+    applications: Optional[List['ApplicationSchema']] = []
+    reviews: Optional[List['ReviewSchema']] = []
+
+
+class MessageForm(BaseModel):
+    name: str
+    phone: str
+    message: str
+    email_to: str = 'repost0099@gmail.com'

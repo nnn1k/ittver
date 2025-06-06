@@ -18,6 +18,11 @@ class DbConfig(BaseModel):
         return f"postgresql+psycopg://{self.user}:{self.password}@{self.host}:{self.port}/{self.name}"
 
 
+class EmailConfig(BaseModel):
+    login: str = 'repost0099@gmail.com'
+    password: str = 'rhri isay zltl onia'
+
+
 class JWTConfig(BaseModel):
     private_key: str = BASE_DIR / 'certs' / 'jwt-private.pem'
     public_key: str = BASE_DIR / 'certs' / 'jwt-public.pem'
@@ -26,6 +31,7 @@ class JWTConfig(BaseModel):
 class Settings(BaseSettings):
     jwt: JWTConfig = JWTConfig()
     db: DbConfig = DbConfig()
+    email: EmailConfig = EmailConfig()
 
 
 settings = Settings()

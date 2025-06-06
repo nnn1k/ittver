@@ -1,6 +1,6 @@
 import {getUser, makeRequest} from "/frontend/utils.js";
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Элементы меню
     const newTicketBtn = document.querySelector('.quick-actions .btn.primary');
     const reportBtn = document.querySelector('.quick-actions .btn.secondary');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Закрытие по клику вне окна
         document.querySelectorAll('.modal').forEach(modal => {
-            modal.addEventListener('click', function(e) {
+            modal.addEventListener('click', function (e) {
                 if (e.target === this) closeAllModals();
             });
         });
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Обработчики форм
-        document.getElementById('ticketForm')?.addEventListener('submit', function(e) {
+        document.getElementById('ticketForm')?.addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Заявка успешно создана!');
             this.reset();
             closeAllModals();
         });
 
-        document.getElementById('reportForm')?.addEventListener('submit', function(e) {
+        document.getElementById('reportForm')?.addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Отчет готовится и будет отправлен вам на почту!');
             this.reset();
@@ -70,23 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Загрузка данных для "Мои заявки"
     function loadMyTickets() {
-        const mockTickets = [
-            { id: 1254, subject: 'Ремонт сервера Dell', status: 'active', date: '15.05.2024' },
-            { id: 1253, subject: 'Настройка 1С', status: 'completed', date: '14.05.2024' },
-            { id: 1252, subject: 'Замена HDD на рабочей станции', status: 'active', date: '13.05.2024' }
-        ];
-
         const ticketsList = document.querySelector('#myTicketsModal .tickets-list');
         if (!ticketsList) return;
-
-        ticketsList.innerHTML = mockTickets.map(ticket => `
+        console.log(user.applications[0].status);
+        ticketsList.innerHTML = user.applications.map(ticket => `
             <div class="ticket-item">
                 <div class="ticket-info">
-                    <h3>#${ticket.id} - ${ticket.subject}</h3>
+                    <h3>#${ticket.id} - ${ticket.description}</h3>
                     <div class="ticket-meta">
-                        <span>${ticket.date}</span>
-                        <span class="status ${ticket.status === 'active' ? 'in-progress' : 'completed'}">
-                            ${ticket.status === 'active' ? 'В работе' : 'Завершено'}
+                        <span>${ticket.created_at}</span>
+                        <span class="status ${ticket.status === 'in_progress' ? 'in_progress' : 'completed'}">
+                            ${ticket.status === 'active' ? 'Завершено' : 'В работе'}
                         </span>
                     </div>
                 </div>
@@ -99,21 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Назначение обработчиков кнопкам
     if (newTicketBtn) {
-        newTicketBtn.addEventListener('click', function(e) {
+        newTicketBtn.addEventListener('click', function (e) {
             e.preventDefault();
             openModal(modals.newTicket);
         });
     }
 
     if (reportBtn) {
-        reportBtn.addEventListener('click', function(e) {
+        reportBtn.addEventListener('click', function (e) {
             e.preventDefault();
             openModal(modals.report);
         });
     }
 
     if (myTicketsBtn) {
-        myTicketsBtn.addEventListener('click', function(e) {
+        myTicketsBtn.addEventListener('click', function (e) {
             e.preventDefault();
             openModal(modals.myTickets);
         });
@@ -124,8 +118,46 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const user = await getUser()
+document.getElementById('user-name').textContent = `${user.name} ${user.surname}`
+document.getElementById('count-in-progress').textContent = user.applications.length
+for (let app of user.applications) {
+    let applTable = document.getElementById('applications-table')
+    applTable.innerHTML += `
+  <tr>
+        <td>${app.id}</td>
+        <td>${getServiceName(app.service)}</td>
+        <td><span class="status-badge status-${app.status}">${getStatusText(app.status)}</span></td>
+        <td>${formatDate(app.created_at)}</td>
+  </tr>
+  `
+}
 
-async function logout(){
+function getServiceName(service) {
+    const services = {
+        'repair': 'Ремонт техники',
+        '1C': 'Настройка 1С',
+        'service': 'Обслуживание',
+        'other': 'Другое'
+    };
+    return services[service] || service; // Возвращает оригинальное значение, если нет в списке
+}
+
+function getStatusText(status) {
+    const statuses = {
+        'active': 'В работе',
+        'completed': 'Завершено',
+        'in_progress': 'Ожидание',
+        'cancel': 'Отменено'
+    };
+    return statuses[status] || status;
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ru-RU')
+}
+
+async function logout() {
     const response = await makeRequest({
         url: "/api/auth/logout",
         method: "POST"

@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from backend.src.database.base import Base, int_pk, created_at, updated_at
 
@@ -15,5 +15,16 @@ class UserModel(Base):
     image_url: Mapped[str] = mapped_column(default='')
     created_at: Mapped[created_at]
     updated_at: Mapped[updated_at]
+
+    reviews: Mapped[list['ReviewModel']] = relationship(
+        'ReviewModel',
+        back_populates='user',
+        lazy='noload'
+    )
+    applications: Mapped[list['ApplicationModel']] = relationship(
+        'ApplicationModel',
+        back_populates='user',
+        lazy='noload'
+    )
 
 

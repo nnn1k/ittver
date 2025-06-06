@@ -24,9 +24,9 @@ async def get_user_by_token(
         access_token=Cookie(None, include_in_schema=False),
         refresh_token=Cookie(None, include_in_schema=False),
         response: Response = None,
+        auth: bool = Query(True, include_in_schema=False),
         service: UserService = Depends(get_user_serv),
-        is_admin: bool = Query(default=False, include_in_schema=False),
-) -> UserSchema:
+) -> UserSchema | None:
     user_id: int | None = None
     if access_token:
         try:
@@ -51,9 +51,24 @@ async def get_user_by_token(
             raise invalid_token_exc
 
     if not user_id:
-        raise invalid_token_exc
+        if auth:
+            raise invalid_token_exc
+        return None
 
     user = await service.get_user(id=int(user_id))
-    if is_admin and not user.is_admin:
-        raise user_is_not_admin_exc
     return user
+
+
+async def get_no_auth_user_by_token(
+        access_token=Cookie(None, include_in_schema=False),
+        refresh_token=Cookie(None, include_in_schema=False),
+        response: Response = None,
+        service: UserService = Depends(get_user_serv),
+):
+    return await get_user_by_token(
+        access_token=access_token,
+        refresh_token=refresh_token,
+        response=response,
+        auth=False,
+        service=service,
+    )

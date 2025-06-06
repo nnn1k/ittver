@@ -21,7 +21,7 @@
             </nav>
             <div class="user-profile">
                 <img src="/frontend/picture/1690444292_new_preview_43-1.jpg">
-                <span>Иван Петров</span>
+                <span id="user-name"></span>
                 <a class="exit-btn with-icon" onclick="logout()">Выход</a>
             </div>
         </div>
@@ -63,7 +63,7 @@
                             <i class="fas fa-ticket-alt"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>NONE</h3>
+                            <h3 id="count-active">0</h3>
                             <p>Активные заявки</p>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>NONE</h3>
+                            <h3 id="count-completed">0</h3>
                             <p>Завершенные</p>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>NONE</h3>
+                            <h3 id="count-in-progress"></h3>
                             <p>В ожидании</p>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                             <i class="fas fa-times-circle"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>NONE</h3>
+                            <h3 id="count-canceled">0</h3>
                             <p>Отмененные</p>
                         </div>
                     </div>
@@ -120,32 +120,7 @@
                                     <th>Дата</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#1</td>
-                                    <td>zzzzz</td>
-                                    <td><span >zzzzz</span></td>
-                                    <td>zz.zz.zzzz</td>
-                                </tr>
-                                <tr>
-                                    <td>#2</td>
-                                    <td>zzzzz</td>
-                                    <td><span >zzzzz</span></td>
-                                    <td>zz.zz.zzzz</td>
-                                </tr>
-                                <tr>
-                                    <td>#3</td>
-                                    <td>zzzzz</td>
-                                    <td><span >zzzzz</span></td>
-                                    <td>zz.zz.zzzz</td>
-                                </tr>
-                                <tr>
-                                    <td>#4</td>
-                                    <td>zzzzz</td>
-                                    <td><span >zzzzz</span></td>
-                                    <td>zz.zz.zzzz</td>
-                                </tr>
-
+                            <tbody id="applications-table">
                             </tbody>
                         </table>
                     </div>
